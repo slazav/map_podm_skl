@@ -45,6 +45,6 @@ while read name geom title; do
     --range_action crop_spl
   time vmap_copy tmp.vmap --skip_labels "$l"\
     -o "$f" --range_datum pulk --range_proj tmerc --range "$geom"\
-    --join_objects 1e-4 $brd
+    --join_objects 1e-4 $brd --name $title
   rm -f tmp.vmap
 done < maps.txt
