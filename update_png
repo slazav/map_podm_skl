@@ -2,7 +2,8 @@
 
 . settings.sh
 
-for f in $fig_dir/*.fig; do
+mkmap(){
+  f="$1"
   base=$(basename $f .fig)
   l="$lab_dir/$base.vmap"
 
@@ -18,4 +19,15 @@ for f in $fig_dir/*.fig; do
     ../map_install "$base"
     cd -
   fi
-done
+}
+
+if [ "$#" = 0 ]; then
+  for f in $fig_dir/*.fig; do
+    mkmap "$f"
+  done
+else
+  for f in "$@"; do
+    echo ">> $f"
+    mkmap "$fig_dir/$f.fig"
+  done
+fi
